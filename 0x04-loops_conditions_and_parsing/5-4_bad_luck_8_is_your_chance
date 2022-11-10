@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
-# loops from 1 to 10 and displays
-#+ "bad luck" for the 4th loop iteration
-#+ "good luck" for the 8th loop iteration
-#+ "Holberton School" for the other iterations
+# Using while loop and if, elif and else statements
+# This script loops from 1 to 10
+# the 4th iteration, displays bad luck
+# the 8th iteration, displays good luck
+# displays Best School for the other iterations
 
-COUNTER=1
-while [ "$COUNTER" -le 10 ]; do
-    if [ $COUNTER -eq 4 ]; then
-	echo "bad luck"
-    elif [ $COUNTER -eq 8 ]; then
-	echo "good luck"
+counter=0
+
+while [ $counter -lt 10 ]
+do
+    if [ $counter -eq 3 ]
+    then
+        echo "bad luck"
+    elif [ $counter -eq 7 ]
+    then
+        echo "good luck"
     else
-	echo "Holberton School"
+	echo "Best School"
     fi
-    let COUNTER=COUNTER+1
+    (( counter++ ))
 done
