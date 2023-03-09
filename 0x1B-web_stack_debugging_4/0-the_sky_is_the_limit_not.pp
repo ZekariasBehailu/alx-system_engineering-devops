@@ -1,6 +1,12 @@
-# fix our stack so that there is not failed requests
+# Fix problem of high amount of requests
 
-exec { 'change nginx limit':
-    command  => 'sudo sed -i "s/15/4096/g" /etc/default/nginx; sudo service nginx restart',
-    provider => shell,
+exec {'replace':
+  provider => shell,
+  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
+  before   => Exec['restart'],
+}
+
+exec {'restart':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
